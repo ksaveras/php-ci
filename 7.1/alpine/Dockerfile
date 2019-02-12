@@ -21,7 +21,7 @@ RUN apk update && apk upgrade \
     freetype-dev \
     libjpeg-turbo-dev \
     libpng-dev \
-  && apk add --no-cache icu libmcrypt \
+  && apk add --no-cache icu libmcrypt freetype libpng libjpeg-turbo \
   && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ \
     --with-png-dir=/usr/include/ \
     --with-jpeg-dir=/usr/include/ \
