@@ -37,8 +37,9 @@ RUN apk update && apk upgrade \
   && apk del --purge .build-deps \
   && rm -rf /tmp/pear ~/.pearrc /var/tmp/* /tmp/*
 
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
-  && composer global require hirak/prestissimo --prefer-dist --no-interaction \
+COPY --from=composer:1.7 /usr/bin/composer /usr/bin/composer
+
+RUN composer global require hirak/prestissimo --prefer-dist --no-interaction \
   && rm -rf /root/.composer/cache/*
 
 WORKDIR /app
