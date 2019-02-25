@@ -32,10 +32,9 @@ RUN apk update && apk upgrade \
     opcache \
     iconv \
   && pecl install xdebug redis \
-  && docker-php-ext-enable xdebug \
+  && docker-php-ext-enable redis \
   && apk del --purge .build-deps \
-  && rm -rf /tmp/pear ~/.pearrc /var/tmp/* /tmp/* \
-  && mv /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini.disabled
+  && rm -rf /tmp/pear ~/.pearrc /var/tmp/* /tmp/*
 
 RUN { \
         echo '#!/bin/sh'; \
@@ -47,7 +46,12 @@ COPY --from=composer:1.7 /usr/bin/composer /usr/bin/composer
 
 RUN composer global require \
     hirak/prestissimo \
-    escapestudios/symfony2-coding-standard \
+    phpmd/phpmd \
+    pdepend/pdepend \
+    phpstan/phpstan \
+    phpstan/phpstan-doctrine \
+    phpstan/phpstan-phpunit \
+    phpstan/phpstan-symfony \
     --prefer-dist --no-interaction \
     && rm -rf /root/.composer/cache/*
 
@@ -61,21 +65,17 @@ RUN mkdir -p /usr/local/etc/phpcs \
     && git clone git://github.com/escapestudios/Symfony2-coding-standard.git /usr/local/etc/phpcs/Symfony2-coding-standard \
     && /usr/local/bin/phpcs --config-set installed_paths /usr/local/etc/phpcs/Symfony2-coding-standard
 
-RUN wget -c https://static.phpmd.org/php/latest/phpmd.phar -O /usr/local/bin/phpmd \
-    && chmod a+x /usr/local/bin/phpmd
-
 RUN wget -c https://phar.phpunit.de/phpcpd.phar -O /usr/local/bin/phpcpd \
     && chmod a+x /usr/local/bin/phpcpd
 
 RUN wget -c https://phar.phpunit.de/phploc.phar -O /usr/local/bin/phploc \
     && chmod a+x /usr/local/bin/phploc
 
-RUN wget -c https://static.pdepend.org/php/latest/pdepend.phar -O /usr/local/bin/pdepend \
-    && chmod a+x /usr/local/bin/pdepend
-
 RUN wget -c https://cs.symfony.com/download/php-cs-fixer-v2.phar -O /usr/local/bin/php-cs-fixer \
     && chmod a+x /usr/local/bin/php-cs-fixer
 
 RUN cp "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
+
+ENV PATH="$PATH:/root/.composer/vendor/bin"
 
 WORKDIR /app

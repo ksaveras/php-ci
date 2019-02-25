@@ -1,4 +1,4 @@
-FROM php:7.2-cli-alpine
+FROM php:7.3-cli-alpine
 
 RUN apk update && apk upgrade \
   && set -xe \
@@ -19,7 +19,8 @@ RUN apk update && apk upgrade \
     freetype-dev \
     libjpeg-turbo-dev \
     libpng-dev \
-  && apk add --no-cache git icu freetype libpng libjpeg-turbo \
+    libzip-dev \
+  && apk add --no-cache git icu freetype libzip libpng libjpeg-turbo \
   && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ \
     --with-png-dir=/usr/include/ \
     --with-jpeg-dir=/usr/include/ \
@@ -29,7 +30,7 @@ RUN apk update && apk upgrade \
     pdo_mysql \
     opcache \
     iconv \
-  && pecl install xdebug redis \
+  && pecl install xdebug-beta redis \
   && docker-php-ext-enable redis \
   && apk del --purge .build-deps \
   && rm -rf /tmp/pear ~/.pearrc /var/tmp/* /tmp/*
