@@ -19,11 +19,12 @@ RUN apk update && apk upgrade \
     freetype-dev \
     libjpeg-turbo-dev \
     libpng-dev \
-  && apk add --no-cache git icu freetype libpng libjpeg-turbo \
+  && apk add --no-cache git unzip icu freetype libpng libjpeg-turbo \
   && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ \
     --with-png-dir=/usr/include/ \
     --with-jpeg-dir=/usr/include/ \
   && docker-php-ext-install gd \
+    bcmath \
     intl \
     zip \
     pdo_mysql \

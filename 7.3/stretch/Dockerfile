@@ -23,6 +23,7 @@ RUN apt-get update \
     --with-png-dir=/usr/include/ \
     --with-jpeg-dir=/usr/include/ \
   && docker-php-ext-install gd \
+    bcmath \
     intl \
     zip \
     pdo_mysql \

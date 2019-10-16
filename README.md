@@ -27,6 +27,7 @@ or enable xdebug extension with `-d` flag: `php -dzend_extension=xdebug.so ... r
 
 | Extension | PHP 7.1 | PHP 7.2 | PHP 7.3 |
 |---|:---:|:---:|:---:|
+|bcmath| + | + | + |
 |ctype| + | + | + |
 |curl| + | + | + |
 |date| + | + | + |
