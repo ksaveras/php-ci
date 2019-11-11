@@ -29,6 +29,7 @@ RUN apt-get update \
     pdo_mysql \
     opcache \
     soap \
+    sockets \
     iconv \
   && pecl install xdebug-beta redis \
   && docker-php-ext-enable redis \

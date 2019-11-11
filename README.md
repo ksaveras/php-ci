@@ -56,7 +56,8 @@ or enable xdebug extension with `-d` flag: `php -dzend_extension=xdebug.so ... r
 |Reflection| + | + | + |
 |session| + | + | + |
 |SimpleXML| + | + | + |
-|soap|  | + | + |
+|soap| + | + | + |
+|sockets| + | + | + |
 |sodium|  | + | + |
 |SPL| + | + | + |
 |sqlite3| + | + | + |
