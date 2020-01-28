@@ -33,7 +33,7 @@ RUN apk update && apk upgrade \
     soap \
     sockets \
     iconv \
-  && pecl install xdebug-beta redis \
+  && pecl install xdebug redis \
   && docker-php-ext-enable redis \
   && apk del --purge .build-deps \
   && rm -rf /tmp/pear ~/.pearrc /var/tmp/* /tmp/*
@@ -44,7 +44,7 @@ RUN { \
     } > /usr/local/bin/php-xdebug \
     && chmod +x /usr/local/bin/php-xdebug
 
-COPY --from=composer:1.7 /usr/bin/composer /usr/bin/composer
+COPY --from=composer:1.9 /usr/bin/composer /usr/bin/composer
 
 RUN composer global require \
     hirak/prestissimo \

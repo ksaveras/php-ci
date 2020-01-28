@@ -43,7 +43,7 @@ RUN { \
     } > /usr/local/bin/php-xdebug \
     && chmod +x /usr/local/bin/php-xdebug
 
-COPY --from=composer:1.7 /usr/bin/composer /usr/bin/composer
+COPY --from=composer:1.9 /usr/bin/composer /usr/bin/composer
 
 RUN composer global require \
     hirak/prestissimo \
