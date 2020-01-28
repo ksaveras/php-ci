@@ -6,7 +6,7 @@ This allows quickly integrate project in PHP CI processes.
 
 ## Additional tools
 * GIT
-* composer (1.7 from official Docker image)
+* composer (1.9 from official Docker image)
 * hirak/prestissimo
 * phpcs, phpcbf - PHP_CodeSniffer (with Symfony coding standards)
 * phpcpd - Copy/Paste Detector (CPD)
@@ -63,7 +63,7 @@ or enable xdebug extension with `-d` flag: `php -dzend_extension=xdebug.so ... r
 |sqlite3| + | + | + |
 |standard| + | + | + |
 |tokenizer| + | + | + |
-|xdebug| + (not enabled) | + (not enabled) | + (beta, not enabled) |
+|xdebug| + (not enabled) | + (not enabled) | + (not enabled) |
 |xml| + | + | + |
 |xmlreader| + | + | + |
 |xmlwriter| + | + | + |
