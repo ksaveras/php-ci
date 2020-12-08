@@ -40,10 +40,9 @@ RUN { \
     } > /usr/local/bin/php-xdebug \
     && chmod +x /usr/local/bin/php-xdebug
 
-COPY --from=composer:1.9 /usr/bin/composer /usr/bin/composer
+COPY --from=composer:1.10 /usr/bin/composer /usr/bin/composer
 
 RUN composer global require \
-    hirak/prestissimo \
     phpmd/phpmd \
     pdepend/pdepend \
     phpstan/phpstan \
@@ -72,7 +71,8 @@ RUN wget -c https://phar.phpunit.de/phploc.phar -O /usr/local/bin/phploc \
 RUN wget -c https://cs.symfony.com/download/php-cs-fixer-v2.phar -O /usr/local/bin/php-cs-fixer \
     && chmod a+x /usr/local/bin/php-cs-fixer
 
-RUN cp "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
+RUN cp "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini" \
+    && sed -i "s/memory_limit\s*=.*/memory_limit=-1/g" "$PHP_INI_DIR/php.ini"
 
 ENV PATH="$PATH:/root/.composer/vendor/bin"
 

@@ -15,7 +15,6 @@ This allows quickly integrate project in PHP CI processes.
 ## Additional tools
 * GIT
 * composer (1.9 from official Docker image)
-* hirak/prestissimo
 * phpcs, phpcbf - PHP_CodeSniffer (with Symfony coding standards)
 * phpcpd - Copy/Paste Detector (CPD)
 * phploc - Measure PHP project code size
