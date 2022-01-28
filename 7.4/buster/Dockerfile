@@ -40,7 +40,7 @@ RUN { \
     } > /usr/local/bin/php-xdebug \
     && chmod +x /usr/local/bin/php-xdebug
 
-COPY --from=composer:1.10 /usr/bin/composer /usr/bin/composer
+COPY --from=composer:2.2 /usr/bin/composer /usr/bin/composer
 
 RUN composer global require \
     phpmd/phpmd \
